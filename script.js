@@ -7,8 +7,8 @@ const PHAPLUAT_DATA = {"daily": {"01/01/2026": {"question": "Đồng chí cho bi
 
 // ── CONSTANTS ─────────────────────────────────────────────────────
 // CORS proxy để vượt giới hạn cross-origin
-const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-const CORS_PROXY2 = 'https://corsproxy.io/?';
+const CORS_PROXY  = 'https://corsproxy.io/?url=';
+const CORS_PROXY2 = 'https://api.codetabs.com/v1/proxy?quest=';
 
 // Nguồn tin VNExpress
 const URL_THEGIOI  = 'https://vnexpress.net/the-gioi';
