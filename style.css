@@ -208,10 +208,15 @@ body {
   line-height: 1.4;
 }
 
+/* ── SỬA: hiển thị tối đa 5 dòng ── */
 .news-summary {
   font-size: 0.85rem;
   color: #4b5563;
   line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .news-source {
