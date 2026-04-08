@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bản Tin Tổng Hợp Hằng Ngày</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <i class="fas fa-newspaper"></i>
+      </div>
+      <div class="header-text">
+        <h1>BẢN TIN TỔNG HỢP</h1>
+        <p id="header-date">Đang tải...</p>
+      </div>
+      <div class="header-badge">
+        <i class="fas fa-shield-halved"></i>
+        <span>Trung Đoàn 1 – Sư Đoàn 324</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- PHẦN 1: MỤC TIÊU THI ĐUA -->
+    <section class="card" id="section-thidua">
+      <div class="card-header red">
+        <i class="fas fa-trophy"></i>
+        <h2>MỤC TIÊU, CHỈ TIÊU PHONG TRÀO THI ĐUA</h2>
+      </div>
+      <div class="card-body" id="competition-content">
+        <!-- ====================================================
+             THAY NỘI DUNG THI ĐUA TẠI ĐÂY
+             Xóa đoạn placeholder bên dưới và dán HTML của bạn vào
+             ==================================================== -->
+        <div class="placeholder-notice">
+          <i class="fas fa-edit"></i>
+          <p>Mở file <strong>index.html</strong>, tìm thẻ <code>&lt;div id="competition-content"&gt;</code> và thay nội dung tại đây.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 2: TIN THẾ GIỚI -->
+    <section class="card" id="section-thegioi">
+      <div class="card-header blue">
+        <i class="fas fa-globe"></i>
+        <h2>TIN THẾ GIỚI</h2>
+        <span class="auto-badge"><i class="fas fa-sync-alt"></i> Tự động</span>
+      </div>
+      <div class="card-body" id="world-news">
+        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải tin thế giới...</div>
+      </div>
+    </section>
+
+    <!-- PHẦN 3: TIN TRONG NƯỚC -->
+    <section class="card" id="section-trongnuoc">
+      <div class="card-header green">
+        <i class="fas fa-flag"></i>
+        <h2>TIN TRONG NƯỚC</h2>
+        <span class="auto-badge"><i class="fas fa-sync-alt"></i> Tự động</span>
+      </div>
+      <div class="card-body" id="vietnam-news">
+        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải tin trong nước...</div>
+      </div>
+    </section>
+
+    <!-- PHẦN 4: LỜI BÁC HỒ DẠY -->
+    <section class="card" id="section-bachday">
+      <div class="card-header gold">
+        <i class="fas fa-star"></i>
+        <h2>LỜI BÁC HỒ DẠY NGÀY NÀY NĂM XƯA</h2>
+        <span class="auto-badge"><i class="fas fa-sync-alt"></i> Tự động</span>
+      </div>
+      <div class="card-body" id="bac-ho-content">
+        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải lời Bác Hồ dạy...</div>
+      </div>
+    </section>
+
+    <!-- PHẦN 5: NGÀY PHÁP LUẬT & TUẦN PHÁP LUẬT -->
+    <section class="card" id="section-phapluat">
+      <div class="card-header purple">
+        <i class="fas fa-scale-balanced"></i>
+        <h2>NGÀY PHÁP LUẬT &amp; TUẦN PHÁP LUẬT</h2>
+        <span class="auto-badge"><i class="fas fa-database"></i> Từ dữ liệu</span>
+      </div>
+      <div class="card-body" id="law-content">
+        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải nội dung pháp luật...</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p><i class="fas fa-clock"></i> Cập nhật lúc: <span id="update-time">--:--</span> &nbsp;|&nbsp; Trung Đoàn 1 – Sư Đoàn 324</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

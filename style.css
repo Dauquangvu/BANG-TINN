@@ -1,0 +1,413 @@
+/* =============================================
+   BẢN TIN TỔNG HỢP - style.css
+   ============================================= */
+
+:root {
+  --red:    #e53935;
+  --blue:   #1565c0;
+  --green:  #2e7d32;
+  --gold:   #f57f17;
+  --purple: #6a1b9a;
+  --bg:     #f0f2f5;
+  --card:   #ffffff;
+  --text:   #1a1a2e;
+  --muted:  #6b7280;
+  --border: #e5e7eb;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── HEADER ─────────────────────────────────── */
+.site-header {
+  background: linear-gradient(135deg, #1a237e 0%, #283593 60%, #1565c0 100%);
+  color: #fff;
+  padding: 16px 0;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-logo {
+  font-size: 2.2rem;
+  opacity: 0.95;
+  flex-shrink: 0;
+}
+
+.header-text h1 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.header-text p {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.header-badge {
+  margin-left: auto;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── CONTAINER ───────────────────────────────── */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── CARD ────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.3px;
+}
+
+.card-header.red    { background: var(--red); }
+.card-header.blue   { background: var(--blue); }
+.card-header.green  { background: var(--green); }
+.card-header.gold   { background: var(--gold); }
+.card-header.purple { background: var(--purple); }
+
+.card-header h2 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  flex: 1;
+}
+
+.card-header i:first-child { font-size: 1.1rem; }
+
+.auto-badge {
+  background: rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.card-body {
+  padding: 18px 20px;
+}
+
+/* ── LOADING ─────────────────────────────────── */
+.loading-spinner {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 0;
+  font-size: 0.9rem;
+}
+
+.loading-spinner i { margin-right: 6px; }
+
+/* ── NEWS ITEMS ──────────────────────────────── */
+.news-list { display: flex; flex-direction: column; gap: 14px; }
+
+.news-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  transition: background 0.15s;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.news-item:hover { background: #f8faff; border-color: #c7d2fe; }
+
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.news-date {
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.news-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-today  { background: #dcfce7; color: #166534; }
+.badge-recent { background: #fef3c7; color: #92400e; }
+.badge-old    { background: #f3f4f6; color: #6b7280; }
+
+.news-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.news-summary {
+  font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.news-source {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── FALLBACK ────────────────────────────────── */
+.fallback-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  background: #fef9c3;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  color: #78350f;
+  font-size: 0.88rem;
+}
+
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #991b1b;
+  font-size: 0.88rem;
+}
+
+/* ── BÁC HỒ ──────────────────────────────────── */
+.bachday-box {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 20px 22px;
+  position: relative;
+}
+
+.bachday-quote {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #1c1917;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.bachday-quote::before {
+  content: '"';
+  font-size: 3rem;
+  color: #f59e0b;
+  line-height: 0;
+  vertical-align: -0.6em;
+  margin-right: 4px;
+  font-family: Georgia, serif;
+}
+
+.bachday-date {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+/* ── PHÁP LUẬT ───────────────────────────────── */
+.law-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0;
+}
+
+.law-tab {
+  padding: 8px 18px;
+  border-radius: 8px 8px 0 0;
+  border: none;
+  background: #f3f4f6;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+  border: 2px solid transparent;
+}
+
+.law-tab.active {
+  background: #fff;
+  color: var(--purple);
+  border-color: var(--border);
+  border-bottom-color: #fff;
+}
+
+.law-panel { display: none; }
+.law-panel.active { display: block; }
+
+.law-day-box, .law-week-box {
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.law-day-label, .law-week-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--purple);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.law-question {
+  font-weight: 700;
+  color: #3b0764;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.law-answer-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7c3aed;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+
+.law-answer {
+  color: #1e1b4b;
+  line-height: 1.7;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.law-week-title {
+  font-weight: 700;
+  color: #3b0764;
+  font-size: 0.97rem;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.law-week-content {
+  color: #1e1b4b;
+  line-height: 1.75;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+/* ── PLACEHOLDER ─────────────────────────────── */
+.placeholder-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #f0f9ff;
+  border: 1px dashed #7dd3fc;
+  border-radius: 8px;
+  color: #0369a1;
+  font-size: 0.88rem;
+}
+
+.placeholder-notice i { font-size: 1.2rem; margin-top: 2px; }
+
+/* ── FOOTER ──────────────────────────────────── */
+.site-footer {
+  text-align: center;
+  padding: 16px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 600px) {
+  .header-inner { flex-wrap: wrap; gap: 8px; }
+  .header-badge { margin-left: 0; font-size: 0.72rem; }
+  .header-text h1 { font-size: 1.1rem; }
+  .card-body { padding: 14px 14px; }
+  .card-header { padding: 12px 14px; }
+  .law-tabs { gap: 4px; }
+  .law-tab { padding: 7px 12px; font-size: 0.8rem; }
+}
