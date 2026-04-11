@@ -4,13 +4,591 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bản Tin Tổng Hợp Hằng Ngày</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+/* =============================================
+   BẢN TIN TỔNG HỢP – Redesigned
+   ============================================= */
+
+:root {
+  --red:     #c62828;
+  --red-l:   #ffebee;
+  --blue:    #0d47a1;
+  --blue-l:  #e3f2fd;
+  --green:   #1b5e20;
+  --green-l: #e8f5e9;
+  --gold:    #e65100;
+  --gold-l:  #fff3e0;
+  --purple:  #4a148c;
+  --purple-l:#f3e5f5;
+  --bg:      #f5f0eb;
+  --card:    #ffffff;
+  --text:    #1a1a1a;
+  --muted:   #78736e;
+  --border:  #e0dcd7;
+  --radius:  16px;
+  --shadow:  0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --font-quote: 'Lora', Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15.5px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ─────────────────────────────────── */
+.site-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #fff;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.header-top-strip {
+  background: rgba(255,255,255,0.06);
+  padding: 6px 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.header-top-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.7;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 18px 20px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo {
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.header-text h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+}
+
+.header-text p {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+.header-badge {
+  margin-left: auto;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 24px;
+  padding: 7px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  backdrop-filter: blur(4px);
+}
+
+.header-badge i { opacity: 0.8; }
+
+/* ── CONTAINER ───────────────────────────────── */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── CARD ────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: box-shadow 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07), 0 8px 30px rgba(0,0,0,0.09);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 22px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 120px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06));
+  pointer-events: none;
+}
+
+.card-header.red    { background: linear-gradient(135deg, #b71c1c, #e53935); }
+.card-header.blue   { background: linear-gradient(135deg, #0d47a1, #1976d2); }
+.card-header.green  { background: linear-gradient(135deg, #1b5e20, #388e3c); }
+.card-header.gold   { background: linear-gradient(135deg, #e65100, #fb8c00); }
+.card-header.purple { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+
+.card-header h2 {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 800;
+  flex: 1;
+  letter-spacing: 0.6px;
+}
+
+.card-header i:first-child { font-size: 1.1rem; opacity: 0.9; }
+
+.auto-badge {
+  background: rgba(255,255,255,0.18);
+  border-radius: 14px;
+  padding: 3px 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.card-body {
+  padding: 20px 22px;
+}
+
+/* ── LOADING ─────────────────────────────────── */
+.loading-spinner {
+  text-align: center;
+  color: var(--muted);
+  padding: 32px 0;
+  font-size: 0.9rem;
+}
+
+.loading-spinner i { margin-right: 8px; }
+
+/* ── PROGRESS BAR ─────────────────────────────── */
+.progress-bar-wrap {
+  margin-top: 12px;
+  background: #eee;
+  border-radius: 6px;
+  height: 4px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ── NEWS ITEMS ──────────────────────────────── */
+.news-list { display: flex; flex-direction: column; gap: 16px; }
+
+.news-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+  position: relative;
+}
+
+.news-item:hover {
+  background: #fafaf8;
+  border-color: #c7d0dc;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.news-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 3px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.news-item:hover::before { opacity: 1; }
+#world-news .news-item::before { background: var(--blue); }
+#vietnam-news .news-item::before { background: var(--green); }
+
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.news-date {
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.news-badge {
+  font-size: 0.66rem;
+  font-weight: 800;
+  padding: 2px 9px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.badge-today  { background: #dcfce7; color: #14532d; }
+.badge-recent { background: #fef3c7; color: #78350f; }
+.badge-old    { background: #f3f4f6; color: #6b7280; }
+
+.news-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.45;
+}
+
+.news-summary {
+  font-size: 0.88rem;
+  color: #4b5563;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-summary strong,
+.news-summary b {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.news-source {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── FALLBACK / ERROR ────────────────────────── */
+.fallback-msg {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  color: #78350f;
+  font-size: 0.88rem;
+}
+
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  color: #991b1b;
+  font-size: 0.88rem;
+}
+
+/* ── BÁC HỒ ──────────────────────────────────── */
+.bachday-box {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fde68a33 100%);
+  border: 1px solid #fbbf2433;
+  border-radius: 14px;
+  padding: 24px 26px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bachday-box::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(251,191,36,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.bachday-quote {
+  font-family: var(--font-quote);
+  font-size: 1.08rem;
+  font-style: italic;
+  color: #292524;
+  line-height: 1.85;
+  font-weight: 400;
+  position: relative;
+  padding-left: 24px;
+}
+
+.bachday-quote::before {
+  content: '\201C';
+  font-size: 3.5rem;
+  color: #f59e0b;
+  line-height: 0;
+  position: absolute;
+  left: -4px;
+  top: 18px;
+  font-family: Georgia, serif;
+  opacity: 0.6;
+}
+
+.bachday-context {
+  margin-top: 14px;
+  font-size: 0.87rem;
+  color: #57534e;
+  line-height: 1.7;
+  padding-left: 24px;
+  font-style: normal;
+}
+
+.bachday-date {
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  padding-left: 24px;
+}
+
+.bachday-date a { color: #b45309; text-decoration: none; }
+.bachday-date a:hover { text-decoration: underline; }
+
+/* ── PHÁP LUẬT ───────────────────────────────── */
+.law-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0;
+}
+
+.law-tab {
+  padding: 10px 20px;
+  border-radius: 10px 10px 0 0;
+  border: none;
+  background: #f5f3f0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+  border: 2px solid transparent;
+  font-family: var(--font-body);
+}
+
+.law-tab:hover { background: #ede9e4; }
+
+.law-tab.active {
+  background: #fff;
+  color: var(--purple);
+  border-color: var(--border);
+  border-bottom-color: #fff;
+}
+
+.law-panel { display: none; }
+.law-panel.active { display: block; }
+
+.law-day-box, .law-week-box {
+  background: linear-gradient(135deg, #faf5ff, #f3e8ff88);
+  border: 1px solid #e9d5ff;
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+
+.law-day-label, .law-week-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--purple);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.law-question {
+  font-weight: 700;
+  color: #1e0a3c;
+  margin-bottom: 14px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.law-answer-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #7c3aed;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 8px;
+}
+
+.law-answer {
+  color: #1e1b4b;
+  line-height: 1.75;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.law-week-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #1e0a3c;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.law-week-content {
+  color: #1e1b4b;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+/* ── PLACEHOLDER ─────────────────────────────── */
+.placeholder-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 20px;
+  background: #f0f9ff;
+  border: 1px dashed #93c5fd;
+  border-radius: 10px;
+  color: #1e40af;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.placeholder-notice i { font-size: 1.2rem; margin-top: 2px; }
+
+/* ── FOOTER ──────────────────────────────────── */
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+
+.site-footer i { opacity: 0.6; }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 600px) {
+  .header-inner { flex-wrap: wrap; gap: 10px; }
+  .header-badge { margin-left: 0; font-size: 0.72rem; }
+  .header-text h1 { font-size: 1.2rem; }
+  .header-top-strip { display: none; }
+  .card-body { padding: 16px; }
+  .card-header { padding: 14px 16px; }
+  .law-tabs { gap: 4px; }
+  .law-tab { padding: 8px 14px; font-size: 0.8rem; }
+  .container { padding: 16px 12px 36px; gap: 18px; }
+  .news-title { font-size: 0.95rem; }
+  .bachday-quote { font-size: 1rem; }
+}
+
+/* ── ANIMATION ───────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card {
+  animation: fadeInUp 0.4s ease both;
+}
+.card:nth-child(1) { animation-delay: 0s; }
+.card:nth-child(2) { animation-delay: 0.08s; }
+.card:nth-child(3) { animation-delay: 0.16s; }
+.card:nth-child(4) { animation-delay: 0.24s; }
+.card:nth-child(5) { animation-delay: 0.32s; }
+  </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="site-header">
+    <div class="header-top-strip">
+      <div class="header-top-inner">
+        <span><i class="fas fa-clock"></i>&nbsp; Cập nhật: <span id="update-time">--:--</span></span>
+        <span>Quân đội Nhân dân Việt Nam</span>
+      </div>
+    </div>
     <div class="header-inner">
       <div class="header-logo">
         <i class="fas fa-newspaper"></i>
@@ -35,10 +613,6 @@
         <h2>MỤC TIÊU, CHỈ TIÊU PHONG TRÀO THI ĐUA</h2>
       </div>
       <div class="card-body" id="competition-content">
-        <!-- ====================================================
-             THAY NỘI DUNG THI ĐUA TẠI ĐÂY
-             Xóa đoạn placeholder bên dưới và dán HTML của bạn vào
-             ==================================================== -->
         <div class="placeholder-notice">
           <i class="fas fa-edit"></i>
           <p>Mở file <strong>index.html</strong>, tìm thẻ <code>&lt;div id="competition-content"&gt;</code> và thay nội dung tại đây.</p>
@@ -51,10 +625,13 @@
       <div class="card-header blue">
         <i class="fas fa-globe"></i>
         <h2>TIN THẾ GIỚI</h2>
-        <span class="auto-badge"><i class="fas fa-sync-alt"></i> Tự động</span>
+        <span class="auto-badge"><i class="fas fa-robot"></i> AI tóm tắt</span>
       </div>
       <div class="card-body" id="world-news">
-        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải tin thế giới...</div>
+        <div class="loading-spinner">
+          <i class="fas fa-circle-notch fa-spin"></i> Đang tải và tóm tắt tin thế giới...
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-world"></div></div>
+        </div>
       </div>
     </section>
 
@@ -63,10 +640,13 @@
       <div class="card-header green">
         <i class="fas fa-flag"></i>
         <h2>TIN TRONG NƯỚC</h2>
-        <span class="auto-badge"><i class="fas fa-sync-alt"></i> Tự động</span>
+        <span class="auto-badge"><i class="fas fa-robot"></i> AI tóm tắt</span>
       </div>
       <div class="card-body" id="vietnam-news">
-        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải tin trong nước...</div>
+        <div class="loading-spinner">
+          <i class="fas fa-circle-notch fa-spin"></i> Đang tải và tóm tắt tin trong nước...
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-vietnam"></div></div>
+        </div>
       </div>
     </section>
 
@@ -75,10 +655,13 @@
       <div class="card-header gold">
         <i class="fas fa-star"></i>
         <h2>LỜI BÁC HỒ DẠY NGÀY NÀY NĂM XƯA</h2>
-        <span class="auto-badge"><i class="fas fa-sync-alt"></i> Tự động</span>
+        <span class="auto-badge"><i class="fas fa-robot"></i> AI tra cứu</span>
       </div>
       <div class="card-body" id="bac-ho-content">
-        <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải lời Bác Hồ dạy...</div>
+        <div class="loading-spinner">
+          <i class="fas fa-circle-notch fa-spin"></i> Đang tra cứu lời Bác Hồ dạy...
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-bacho"></div></div>
+        </div>
       </div>
     </section>
 
@@ -87,7 +670,7 @@
       <div class="card-header purple">
         <i class="fas fa-scale-balanced"></i>
         <h2>NGÀY PHÁP LUẬT &amp; TUẦN PHÁP LUẬT</h2>
-        <span class="auto-badge"><i class="fas fa-database"></i> Từ dữ liệu</span>
+        <span class="auto-badge"><i class="fas fa-database"></i> Dữ liệu nội bộ</span>
       </div>
       <div class="card-body" id="law-content">
         <div class="loading-spinner"><i class="fas fa-circle-notch fa-spin"></i> Đang tải nội dung pháp luật...</div>
@@ -97,9 +680,471 @@
   </main>
 
   <footer class="site-footer">
-    <p><i class="fas fa-clock"></i> Cập nhật lúc: <span id="update-time">--:--</span> &nbsp;|&nbsp; Trung Đoàn 1 – Sư Đoàn 324</p>
+    <p><i class="fas fa-shield-halved"></i> Bản Tin Tổng Hợp Hằng Ngày &nbsp;|&nbsp; Trung Đoàn 1 – Sư Đoàn 324 &nbsp;|&nbsp; <i class="fas fa-clock"></i> <span id="update-time-footer">--:--</span></p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+/* =============================================
+   BẢN TIN TỔNG HỢP - script.js
+   v3.0 – AI-powered summaries, accurate Bác Hồ,
+          fixed law date matching
+   ============================================= */
+
+// ── DỮ LIỆU PHÁP LUẬT ──────────────────────────────────────────
+const PHAPLUAT_DATA = {"daily": {"01/01/2026": {"question": "Đồng chí cho biết Nghị định 15/2020/NĐ-CP quy định xử phạt vi phạm hành chính trong lĩnh vực bưu chính, viễn thông, tần số vô tuyến điện, công nghệ thông tin và giao dịch điện tử gồm mấy chương, mấy điều?", "answer": "Gồm 9 chương, 124 điều."}, "02/01/2026": {"question": "Đồng chí cho biết, theo Điều 5 của Nghị định 15/2020/NĐ-CP, đối với hành vi thông báo không đúng với cơ quan nhà nước có thẩm quyền về bưu chính khi có thay đổi liên quan đến Giấy phép bưu chính theo quy định của pháp luật thì bị phạt như thế nào?", "answer": "Theo khoản 1, Điều 5 của Nghị định 15/2020/NĐ-CP, bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng."}, "03/01/2026": {"question": "Đồng chí cho biết, theo Điều 5 của Nghị định 15/2020/NĐ-CP, đối với hành vi không thông báo với cơ quan nhà nước có thẩm quyền về bưu chính khi có thay đổi liên quan đến Giấy phép bưu chính theo quy định của pháp luật thì bị phạt như thế nào?", "answer": "Theo khoản 2, Điều 5 của Nghị định 15/2020/NĐ-CP, bị phạt tiền từ 5.000.000 đồng đến 7.000.000 đồng."}, "04/01/2026": {"question": "Đồng chí cho biết, theo Điều 6 của Nghị định 15/2020/NĐ-CP, đối với hành vi thông báo không đúng với cơ quan nhà nước có thẩm quyền về bưu chính khi có thay đổi liên quan đến văn bản xác nhận thông báo hoạt động bưu chính thì bị phạt như thế nào?", "answer": "Theo khoản 1, Điều 6 của Nghị định 15/2020/NĐ-CP, bị phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng."}, "05/01/2026": {"question": "Đồng chí cho biết, theo Điều 7 của Nghị định 15/2020/NĐ-CP, đối với hành vi sử dụng không đúng dấu ngày hoặc thể hiện không chính xác thông tin về thời gian, địa điểm chấp nhận bưu gửi trên hợp đồng hoặc chứng từ xác nhận việc chấp nhận bưu gửi  thì bị phạt như thế nào?", "answer": "Theo khoản 1, Điều 7 của Nghị định 15/2020/NĐ-CP, bị phạt tiền từ 1.000.000 đồng đến 3.000.000 đồng."}, "06/01/2026": {"question": "Đồng chí cho biết theo Luật tố cáo thì những trường hợp nào không thụ lý giải quyết?", "answer": "Theo khoản 2, điểu 20 Người có thẩm quyền không thụ lý giải quyết tố cáo trong các trường hợp sau đây:\n- Tố cáo về vụ việc đã được người đó giải quyết mà người tố cáo không cung cấp thông tin, tình tiết mới;\n- Tố cáo về vụ việc mà nội dung và những thông tin người tố cáo cung cấp không có cơ sở để xác định người vi phạm, hành vi vi phạm pháp luật;\n- Tố cáo về vụ việc mà người có thẩm quyền giải quyết tố cáo không đủ điều kiện để kiểm tra, xác minh hành vi vi phạm pháp luật, người vi phạm."}, "07/01/2026": {"question": "Đồng chí cho biết theo Luật tố cáo Chánh thanh tra Bộ, cơ quan ngang Bộ, Chánh thanh tra tỉnh, thành phố trực thuộc trung ương, Chánh thanh tra sở, Chánh thanh tra huyện, quận, thị xã, thành phố thuộc tỉnh có trách nhiệm như thế nào?", "answer": "Theo khoản 1, điều 23 Luật tố cáo quy định: Chánh thanh tra Bộ, cơ quan ngang Bộ, Chánh thanh tra tỉnh, thành phố trực thuộc trung ương, Chánh thanh tra sở, Chánh thanh tra huyện, quận, thị xã, thành phố thuộc tỉnh có trách nhiệm sau đây:\n- Xác minh nội dung tố cáo, kết luận nội dung xác minh, kiến nghị biện pháp xử lý tố cáo thuộc thẩm quyền giải quyết của người đứng đầu cơ quan hành chính nhà nước cùng cấp khi được giao;\n- Xem xét, kết luận việc giải quyết tố cáo mà người đứng đầu cơ quan cấp dưới trực tiếp của người đứng đầu cơ quan hành chính nhà nước cùng cấp đã giải quyết nhưng có dấu hiệu vi phạm pháp luật; trường hợp có căn cứ cho rằng việc giải quyết tố cáo có vi phạm pháp luật thì kiến nghị người đứng đầu cơ quan hành chính nhà nước cùng cấp xem xét, giải quyết lại."}, "08/01/2026": {"question": "Đồng chí cho biết theo Luật tố cáo Tổng Thanh tra Chính phủ có trách nhiệm như thế nào?", "answer": "Theo khoản 1, điều 23 Luật tố cáo quy định: Tổng Thanh tra Chính phủ có trách nhiệm sau đây:\n- Xác minh nội dung tố cáo, kết luận nội dung xác minh, kiến nghị biện pháp xử lý tố cáo thuộc thẩm quyền giải quyết của Thủ tướng Chính phủ khi được giao;\n- Xem xét, kết luận việc giải quyết tố cáo mà Bộ trưởng, Thủ trưởng cơ quan ngang Bộ, Thủ trưởng cơ quan thuộc Chính phủ, Chủ tịch Ủy ban nhân dân cấp tỉnh đã giải quyết nhưng có dấu hiệu vi phạm pháp luật; trường hợp kết luận việc giải quyết có vi phạm pháp luật thì kiến nghị Thủ tướng Chính phủ xem xét, giải quyết lại."}, "09/01/2026": {"question": "Đồng chí cho biết theo Luật tố cáo quy định kết luận tố cáo cần đạt được những nội dung nào?", "answer": "Theo điều 24, Luật tố cáo quy định về Kết luận nội dung tố cáo như sau :\n- Căn cứ vào nội dung tố cáo, văn bản giải trình của người bị tố cáo, kết quả xác minh nội dung tố cáo, tài liệu, chứng cứ có liên quan, người giải quyết tố cáo phải kết luận bằng văn bản về nội dung tố cáo.\n- Kết luận nội dung tố cáo phải có các nội dung sau đây:\n+ Kết quả xác minh nội dung tố cáo;\n+ Kết luận việc tố cáo đúng, đúng một phần hoặc sai; xác định trách nhiệm của từng cá nhân về những nội dung tố cáo đúng hoặc đúng một phần;\n+ Các biện pháp xử lý theo thẩm quyền; kiến nghị biện pháp xử lý với cơ quan, tổ chức, cá nhân có thẩm quyền (nếu có)."}, "10/01/2026": {"question": "Đồng chí cho biết theo Luật tố cáo quy định về việc tố cáo tiếp như thế nào?", "answer": "Theo điều 27, Luật tố cáo quy định việc tố cáo tiếp cụ thể như sau:\nTrường hợp quá thời hạn quy định mà tố cáo không được giải quyết hoặc có căn cứ cho rằng việc giải quyết tố cáo là không đúng pháp luật thì người tố cáo có quyền tố cáo tiếp với người đứng đầu cơ quan cấp trên trực tiếp của người có trách nhiệm giải quyết tố cáo."}, "11/01/2026": {"question": "Đồng chí cho biết, Luật tố cáo quy định về Trách nhiệm của cơ quan điều tra, Viện kiểm sát khi nhận được tố cáo hoặc hồ sơ vụ việc tố cáo có dấu hiệu tội phạm cụ thể như thế nào?", "answer": "Theo điều 28, Luật tố cáo quy định trách nhiệm của cơ quan điều tra, Viện kiểm sát khi nhận được tố cáo hoặc hồ sơ vụ việc tố cáo có dấu hiệu tội phạm như sau:\nTrong thời hạn 20 ngày, kể từ ngày nhận được tố cáo hoặc hồ sơ vụ việc tố cáo theo quy định tại khoản 3 Điều 20, khoản 3 Điều 25 của Luật này, cơ quan điều tra, Viện kiểm sát phải thông báo bằng văn bản về việc thụ lý, xử lý cho cơ quan, tổ chức chuyển tố cáo hoặc hồ sơ vụ việc tố cáo biết; trường hợp tố cáo có nội dung phức tạp thì thời hạn thông báo có thể kéo dài hơn, nhưng không quá 60 ngày."}, "12/01/2026": {"question": "Đồng chí cho biết, Luật tố cáo quy định về việc công khai kết luận nội dung tố cáo, và quyết định xử lý hành vi vi phạm bị tố cáo bằng hình thức nào?", "answer": "Người giải quyết tố cáo có trách nhiệm công khai kết luận nội dung tố cáo, quyết định xử lý hành vi vi phạm bị tố cáo bằng một trong các hình thức sau đây:\n- Công bố tại cuộc họp cơ quan, tổ chức nơi người bị tố cáo công tác;\n- Niêm yết tại trụ sở làm việc hoặc nơi tiếp công dân của cơ quan, tổ chức đã giải quyết tố cáo, quyết định xử lý hành vi vi phạm bị tố cáo;\n- Thông báo trên phương tiện thông tin đại chúng."}, "13/01/2026": {"question": "Đồng chí cho biết, Luật tố cáo quy định về phạm vi, đối tượng và thời hạn bảo vệ người tố cáo như thế nào?", "answer": "Theo điều 34. Luật tố cáo quy định phạm vi, đối tượng và thời hạn bảo vệ của người tố cáo cụ thể như sau:\n- Việc bảo vệ người tố cáo được thực hiện tại nơi cư trú, công tác, làm việc, học tập, nơi có tài sản của người cần được bảo vệ hoặc những nơi khác do cơ quan có thẩm quyền quyết định.\n- Đối tượng bảo vệ gồm có:\n+ Người tố cáo;\n+ Người thân thích của người tố cáo.\n- Thời hạn bảo vệ do cơ quan có thẩm quyền quyết định tùy thuộc vào tình hình thực tế của từng vụ việc, mức độ, tính chất của hành vi xâm phạm đến quyền và lợi ích hợp pháp của đối tượng cần được bảo vệ."}, "14/01/2026": {"question": "Đồng chí cho biết theo Luật tố cáo quy định các biện pháp bảo việ người tố cáo và người thân thích của họ như thế nào?", "answer": "Theo khoản 3, điểu 39 Luật tố cáo quy định các biện pháp sau đây: \n- Bố trí nơi tạm lánh khi người tố cáo, người thân thích của họ có nguy cơ bị xâm phạm đến tính mạng, sức khỏe;\n- Bố trí lực lượng, phương tiện, công cụ để trực tiếp bảo vệ an toàn tính mạng, sức khỏe, tài sản, danh dự, nhân phẩm, uy tín cho người tố cáo và người thân thích của họ tại nơi cần thiết;\n- Áp dụng biện pháp ngăn chặn, xử lý hành vi xâm hại hoặc đe dọa xâm hại đến tính mạng, sức khỏe, tài sản, danh dự, nhân phẩm, uy tín của người tố cáo và người thân thích của người tố cáo theo quy định của pháp luật;\n- Các biện pháp bảo vệ khác theo quy định của pháp luật."}, "15/01/2026": {"question": "Đồng chí cho biết theo Luật tố cáo quy định về trách nhiệm của cơ quan quản lý nhà nước về công tác giải quyết tố cáo?", "answer": "Theo điều 41, Luật tố cáo quy định Trách nhiệm của cơ quan quản lý nhà nước về công tác giải quyết tố cáo:\n- Chính phủ thống nhất quản lý nhà nước về công tác giải quyết tố cáo trong các cơ quan hành chính nhà nước trong phạm vi cả nước.\n- Thanh tra Chính phủ chịu trách nhiệm trước Chính phủ thực hiện quản lý nhà nước về công tác giải quyết tố cáo trong phạm vi thẩm quyền của Chính phủ.\n- Thanh tra Bộ, cơ quan ngang Bộ, Thanh tra tỉnh, thành phố trực thuộc trung ương, Thanh tra sở, Thanh tra huyện, quận, thị xã, thành phố thuộc tỉnh giúp người đứng đầu cơ quan quản lý nhà nước cùng cấp quản lý công tác giải quyết tố cáo."}, "16/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô dưới 16 tuổi sẽ bị xử phạt như thế nào?", "answer": "Theo khoản 1, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô dưới 16 tuổi sẽ bị xử phạt Cảnh cáo."}, "17/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô từ 16 tuổi đến dưới 18 tuổi điều khiển xe mô tô từ 50cm3 trở lên sẽ bị xử phạt như thế nào?", "answer": "Theo điểm a, khoản 4, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô từ 16 tuổi đến dưới 18 tuổi điều khiển xe mô tô từ 50cm3 trở lên sẽ bị xử phạt từ 400.000 - 600.000đ"}, "18/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô dưới 175cm3 không có GPLX, sử dụng GPLX không do cơ quan có thẩm quyền cấp, GPLX hoặc bị tẩy xóa sẽ bị xử phạt như thế nào?", "answer": "Theo khoản 5, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô dưới 175cm3 không có GPLX, sử dụng GPLX không do cơ quan có thẩm quyền cấp, GPLX hoặc bị tẩy xóa sẽ bị xử phạt từ 800.000 - 1,2 triệu đồng; tịch thu GPLX không hợp lệ"}, "19/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô từ 175cm3 trở lên không có GPLX, sử dụng GPLX không do cơ quan có thẩm quyền cấp hoặc bị tẩy xóa sẽ bị xử phạt như thế nào?", "answer": "Theo điểm b, khoản 7, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô từ 175cm3 trở lên không có GPLX, sử dụng GPLX không do cơ quan có thẩm quyền cấp, GPLX hoặc bị tẩy xóa sẽ bị xử phạt từ 4 - 6 triệu đồng; tịch thu GPLX không hợp lệ."}, "20/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô từ 175cm3 trở lên có GPLX nhưng không phù hợp với loại xe đang điều khiển hoặc hết hạn sử dụng 6 tháng trở lên sẽ bị xử phạt như thế nào?", "answer": "Theo điểm a, khoản 7, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô từ175cm3 trở lên có GPLX nhưng không phù hợp với loại xe đang điều khiển hoặc hết hạn sử dụng 6 tháng trở lên sẽ bị xử phạt từ 4 - 6 triệu đồng;"}, "21/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô không mang theo Giấy phép lái xe sẽ bị xử phạt như thế nào?", "answer": "Theo điểm c, khoản 2, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô không mang theo Giấy phép lái xe sẽ bị xử phạt từ 80.000đ - 120.000đ."}, "22/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô không mang theo Giấy đăng ký xe sẽ bị xử phạt như thế nào?", "answer": "Theo điểm a, khoản 3, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô không mang theo Giấy đăng ký xe sẽ bị xử phạt từ 80.000đ - 120.000đ."}, "23/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô không có Giấy đăng ký xe sẽ bị xử phạt như thế nào?", "answer": "Theo điểm a, khoản 3, Điều 17 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô không có Giấy đăng ký xe sẽ bị xử phạt từ 300.000đ - 400.000đ"}, "24/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô sử dụng Giấy đăng ký xe bị tẩy xóa; không đúng số khung, số máy hoặc không do cơ quan có thẩm quyền cấp sẽ bị xử phạt như thế nào?", "answer": "Theo điểm b, khoản 3, Điều 17 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô sử dụng Giấy đăng ký xe bị tẩy xóa; không đúng số khung, số máy hoặc không do cơ quan có thẩm quyền cấp sẽ bị xử phạt từ 300.000đ - 400.000đ, tịch thu Giấy đăng ký không hợp lệ"}, "25/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô không có hoặc không mang theo Giấy chứng nhận bảo hiểm TNDS của chủ xe cơ giới sẽ bị xử phạt như thế nào?", "answer": "Theo điểm a, khoản 2, Điều 21 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô không có hoặc không mang theo Giấy chứng nhận bảo hiểm TNDS của chủ xe cơ giới sẽ bị xử phạt từ 80.000đ - 120.000đ."}, "26/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô chuyển làn đường không đúng nơi được phép hoặc không có tín hiệu báo trước sẽ bị xử phạt như thế nào?", "answer": "Theo điểm a, khoản 2, Điều 6 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô chuyển làn đường không đúng nơi được phép hoặc không có tín hiệu báo trước sẽ bị xử phạt từ 80.000đ - 100.000đ"}, "27/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô dừng xe, đỗ xe trên phần đường xe chạy ở đoạn đường ngoài đô thị nơi có lề đường sẽ bị kỷ luật như thế nào?", "answer": "Theo điểm a, khoản 3, Điều 6 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô dừng xe, đỗ xe trên phần đường xe chạy ở đoạn đường ngoài đô thị nơi có lề đường sẽ bị xử phạt từ 100.000 - 200.000đ (giữ GPLX 2 tháng nếu gây TNGT)"}, "28/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô dừng xe, đỗ xe ở lòng đường đô thị gây cản trở giao thông; đỗ, để xe ở lòng đường đô thị, hè phố trái quy định sẽ bị xử phạt như thế nào?", "answer": "Theo điểm đ, khoản 3, Điều 6 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô dừng xe, đỗ xe ở lòng đường đô thị gây cản trở giao thông; đỗ, để xe ở lòng đường đô thị, hè phố trái quy định sẽ bị xử phạt từ 100.000 - 200.000đ (giữ GPLX 2 tháng nếu gây TNGT)"}, "29/01/2026": {"question": "Đ/c cho biết theo Nghị định 171/2013/NĐ-CP của Chính phủ quy định về việc người điều khiển xe mô tô Chuyển hướng không giảm tốc độ hoặc không có tín hiệu báo hướng rẽ sẽ bị xử phạt như thế nào?", "answer": "Theo điểm a, khoản 4, Điều 6 Nghị định 171/2013/NĐ-CP của Chính phủ quy định người điều khiển xe mô tô Chuyển hướng không giảm tốc độ hoặc không có tín hiệu báo hướng rẽ sẽ bị xử phạt từ 200.000 - 400.000đ."}, "30/01/2026": {"question": "Đ/c cho biết theo Điều 2 Luật Tổ chức Chính phủ quy định cơ cấu tổ chức và thành viên của Chính phủ như thế nào?", "answer": "Theo 2 Luật Tổ chức Chính phủ quy định cơ cấu tổ chức và thành viên của Chính phủ:\n1. Chính phủ gồm Thủ tướng Chính phủ, các Phó Thủ tướng Chính phủ, các Bộ trưởng và Thủ trưởng cơ quan ngang bộ. Cơ cấu số lượng thành viên Chính phủ do Thủ tướng Chính phủ trình Quốc hội quyết định.\n2. Cơ cấu tổ chức của Chính phủ gồm các bộ, cơ quan ngang bộ."}, "31/01/2026": {"question": "Đ/c cho biết theo Điều 3 Luật Tổ chức Chính phủ quy định nhiệm kỳ của Chính phủ như thế nào?", "answer": "Theo Điều 3 Luật Tổ chức Chính phủ quy định Nhiệm kỳ của Chính phủ theo nhiệm kỳ của Quốc hội. Khi Quốc hội hết nhiệm kỳ, Chính phủ tiếp tục làm nhiệm vụ cho đến khi Quốc hội khóa mới thành lập Chính phủ."}, "01/02/2026": {"question": "Đ/c cho biết theo Điều 5 Luật Tổ chức Chính phủ quy định tổ chức và hoạt động của Chính phủ có bao nhiêu nguyên tắc?", "answer": "Theo Điều 5 Luật Tổ chức Chính phủ quy định tổ chức và hoạt động của Chính phủ có 5 nguyên tắc:\n1. Tuân thủ Hiến pháp và pháp luật, quản lý xã hội bằng Hiến pháp và pháp luật, thực hiện nguyên tắc tập trung dân chủ; bảo đảm bình đẳng giới.\n2. Phân định rõ nhiệm vụ, quyền hạn, trách nhiệm giữa Chính phủ, Thủ tướng Chính phủ với Bộ trưởng, Thủ trưởng cơ quan ngang bộ và chức năng, phạm vi quản lý giữa các bộ, cơ quan ngang bộ; đề cao trách nhiệm cá nhân của người đứng đầu.\n3. Tổ chức bộ máy hành chính tinh gọn, năng động, hiệu lực, hiệu quả; bảo đảm nguyên tắc cơ quan cấp dưới phục tùng sự lãnh đạo, chỉ đạo và chấp hành nghiêm chỉnh các quyết định của cơ quan cấp trên.\n4. Phân cấp, phân quyền hợp lý giữa Chính phủ với chính quyền địa phương, bảo đảm quyền quản lý thống nhất của Chính phủ và phát huy tính chủ động, sáng tạo, tự chịu trách nhiệm của chính quyền địa phương.\n5. Minh bạch, hiện đại hóa hoạt động của Chính phủ, các bộ, cơ quan ngang bộ, cơ quan hành chính nhà nước các cấp; bảo đảm thực hiện một nền hành chính thống nhất, thông suốt, liên tục, dân chủ, hiện đại, phục vụ Nhân dân, chịu sự kiểm tra, giám sát của Nhân dân."}, "02/02/2026": {"question": "Đ/c cho biết theo Điều 6 Luật Tổ chức Chính phủ quy định Chính phủ trong tổ chức thi hành Hiến pháp và pháp luật có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 6 Luật Tổ chức Chính phủ quy định Chính phủ trong tổ chức thi hành Hiến pháp và pháp luật có 4 nhiệm vụ và quyền hạn."}, "03/02/2026": {"question": "Đ/c cho biết theo Điều 7 Luật Tổ chức Chính phủ quy định Chính phủ trong hoạch định chính sách và trình dự án luật, pháp lệnh có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 7 Luật Tổ chức Chính phủ quy định Chính phủ trong hoạch định chính sách và trình dự án luật, pháp lệnh có 4 nhiệm vụ và quyền hạn."}, "04/02/2026": {"question": "Đ/c cho biết theo Điều 8 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý và phát triển kinh tế có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 8 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý và phát triển kinh tế có 8 nhiệm vụ và quyền hạn."}, "05/02/2026": {"question": "Đ/c cho biết theo Điều 9 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý tài nguyên, môi trường và ứng phó với biến đổi khí hậu có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 9 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý tài nguyên, môi trường và ứng phó với biến đổi khí hậu có 5 nhiệm vụ và quyền hạn."}, "06/02/2026": {"question": "Đ/c cho biết theo Điều 10 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý khoa học và công nghệ có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 10 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý khoa học và công nghệ có 5 nhiệm vụ và quyền hạn."}, "07/02/2026": {"question": "Đ/c cho biết theo Điều 11 Luật Tổ chức Chính phủ quy định Chính phủ trong giáo dục và đào tạo có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 11 Luật Tổ chức Chính phủ quy định Chính phủ trong giáo dục và đào tạo có 4 nhiệm vụ và quyền hạn."}, "08/02/2026": {"question": "Đ/c cho biết theo Điều 12 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý văn hóa, thể thao và du lịch có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 12 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý văn hóa, thể thao và du lịch có 4 nhiệm vụ và quyền hạn."}, "09/02/2026": {"question": "Đ/c cho biết theo Điều 13 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý thông tin và truyền thông có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 13 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý thông tin và truyền thông có 4 nhiệm vụ và quyền hạn."}, "10/02/2026": {"question": "Đ/c cho biết theo Điều 14 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý y tế, chăm sóc sức khỏe của Nhân dân và dân số có bao nhiêu nhiệm vụ và quyền hạn?", "answer": "Theo Điều 14 Luật Tổ chức Chính phủ quy định Chính phủ trong quản lý y tế, chăm sóc sức khỏe của Nhân dân và dân số có 5 nhiệm vụ và quyền hạn."}, "08/04/2026": {"question": "Đ/c cho biết theo quy định thời gian bảo quản VKTBKT khí tài hàng tuần là bao nhiêu phút?", "answer": "Theo quy định thời gian bảo quản VKTBKT khí tài hàng tuần là: VKTB bảo quản 30 phút, VKTBKT khác, khí tài phức tạp bảo quản từ 3 đến 4 giờ, thời gian bảo quản vào ngày làm việc cuối tuần."}}, "weekly": {"Tuần 1 tháng 1": "Điều 35, Điều lệnh quản lý bộ đội, quy định về \"Chức trách, nhiệm vụ của chiến sĩ\"\n1. Hiểu biết và thực hiện đúng nghĩa vụ, trách nhiệm, vinh dự của người chiến sĩ trong quân đội.\n2. Rèn luyện bản lĩnh chiến đấu, rèn luyện thể lực, tích cực học tập để nâng cao trình độ về mọi mặt. Dũng cảm không sợ gian khổ, hy sinh, kiên quyết hoàn thành mọi nhiệm vụ.\n3. Giữ tốt và sử dụng thành thạo các loại vũ khí, trang bị, quân trang và dụng cụ được giao. Có nhiệm vụ bảo vệ tài sản chung.\n4. Tự giác chấp hành nghiêm kỷ luật quân đội và mệnh lệnh, chỉ thị của cấp trên, pháp luật của Nhà nước.\n5. Tích cực xây dựng đơn vị, đoàn kết thương yêu đồng chí, đồng đội, tôn trọng cấp trên, tôn trọng và giúp đỡ nhân dân.", "Tuần 2 tháng 4": "Điều 332 Bộ Luật Hình sự năm 2015 \"Tội vi phạm các quy định về bảo đảm an toàn trong chiến đấu hoặc trong huấn luyện\"\n1. Người nào không chấp hành nghiêm chỉnh những quy định bảo đảm an toàn trong chiến đấu hoặc trong huấn luyện gây hậu quả nghiêm trọng, thì bị phạt cải tạo không giam giữ đến ba năm hoặc phạt tù từ một năm đến năm năm.\n2. Phạm tội gây hậu quả rất nghiêm trọng hoặc đặc biệt nghiêm trọng, thì bị phạt tù từ ba năm đến mười năm.", "Tuần 3 tháng 4": "Điều 333 Bộ Luật Hình sự năm 2015 \"Tội vi phạm các quy định về sử dụng vũ khí quân dụng\" \n1. Người nào vi phạm các quy định về sử dụng vũ khí quân dụng gây hậu quả nghiêm trọng, thì bị phạt cải tạo không giam giữ đến ba năm hoặc phạt tù từ sáu tháng đến năm năm.\n2. Phạm tội trong khu vực có chiến sự hoặc gây hậu quả rất nghiêm trọng hoặc đặc biệt nghiêm trọng, thì bị phạt tù từ ba năm đến mười năm.", "Tuần 4 tháng 4": "Điều 334 Bộ Luật Hình sự năm 2015 \"Tội huỷ hoại vũ khí quân dụng, phương tiện kỹ thuật quân sự\" \n1. Người nào hủy hoại vũ khí quân dụng, phương tiện kỹ thuật quân sự, nếu không thuộc trường hợp quy định tại Điều 85 và Điều 231 của Bộ luật này, thì bị phạt tù từ hai năm đến bảy năm.\n2. Phạm tội trong chiến đấu, trong khu vực có chiến sự hoặc gây hậu quả nghiêm trọng, thì bị phạt tù từ năm năm đến mười hai năm.\n3. Phạm tội gây hậu quả rất nghiêm trọng thì bị phạt tù từ mười năm đến hai mươi năm.\n4. Phạm tội gây hậu quả đặc biệt nghiêm trọng thì bị phạt tù hai mươi năm, tù chung thân hoặc tử hình."}};
+
+// ── CONSTANTS ─────────────────────────────────────────────────────
+const RSS_API       = 'https://api.rss2json.com/v1/api.json?rss_url=';
+const RSS_THEGIOI   = 'https://vnexpress.net/rss/the-gioi.rss';
+const RSS_TRONGNUOC = 'https://vnexpress.net/rss/thoi-su.rss';
+const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
+
+// ── TIỆN ÍCH NGÀY THÁNG ────────────────────────────────────────
+function getToday() {
+  const d = new Date();
+  const dd   = String(d.getDate()).padStart(2, '0');
+  const mm   = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = d.getFullYear();
+  return { dd, mm, yyyy, full: `${dd}/${mm}/${yyyy}`, day: d.getDate(), month: d.getMonth()+1 };
+}
+
+function formatDateVN(date) {
+  const days = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+  const d = new Date(date);
+  return `${days[d.getDay()]}, ngày ${String(d.getDate()).padStart(2,'0')} tháng ${String(d.getMonth()+1).padStart(2,'0')} năm ${d.getFullYear()}`;
+}
+
+function getWeekOfMonth(day) {
+  return Math.ceil(day / 7);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').trim();
+}
+
+// ── PROGRESS ANIMATION ─────────────────────────────────────────
+function animateProgress(id, targetPct, durationMs) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.width = targetPct + '%';
+}
+
+// ── KHỞI TẠO ──────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const now = new Date();
+  document.getElementById('header-date').textContent = formatDateVN(now);
+  const timeStr = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('update-time').textContent = timeStr;
+  document.getElementById('update-time-footer').textContent = timeStr;
+
+  loadWorldNews();
+  loadVietnamNews();
+  loadBacHo();
+  loadPhapLuat();
+
+  // Auto refresh mỗi 1 giờ
+  setInterval(() => {
+    loadWorldNews();
+    loadVietnamNews();
+    const t = new Date();
+    const ts = String(t.getHours()).padStart(2,'0') + ':' + String(t.getMinutes()).padStart(2,'0');
+    document.getElementById('update-time').textContent = ts;
+    document.getElementById('update-time-footer').textContent = ts;
+  }, 60 * 60 * 1000);
+});
+
+// ═══════════════════════════════════════════════════════════════
+// CLAUDE AI – TÓM TẮT TIN
+// ═══════════════════════════════════════════════════════════════
+async function callClaude(prompt, maxTokens = 1500) {
+  try {
+    const res = await fetch(ANTHROPIC_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: maxTokens,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    const data = await res.json();
+    return data.content.map(b => b.text || '').join('\n').trim();
+  } catch (err) {
+    console.warn('Claude API error:', err);
+    return null;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TIN THẾ GIỚI & TRONG NƯỚC – VỚI TÓM TẮT AI
+// ═══════════════════════════════════════════════════════════════
+async function loadWorldNews() {
+  await loadAndSummarizeNews('world-news', RSS_THEGIOI, 'tin thế giới', 'https://vnexpress.net/the-gioi', 'prog-world');
+}
+
+async function loadVietnamNews() {
+  await loadAndSummarizeNews('vietnam-news', RSS_TRONGNUOC, 'tin trong nước', 'https://vnexpress.net/thoi-su', 'prog-vietnam');
+}
+
+async function loadAndSummarizeNews(containerId, rssUrl, label, fallbackUrl, progId) {
+  const container = document.getElementById(containerId);
+  animateProgress(progId, 20, 500);
+
+  try {
+    const apiUrl = RSS_API + encodeURIComponent(rssUrl);
+    const res = await fetch(apiUrl, { signal: AbortSignal.timeout(15000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (!data || data.status !== 'ok' || !Array.isArray(data.items) || data.items.length === 0) {
+      throw new Error('Không có dữ liệu RSS');
+    }
+
+    animateProgress(progId, 40, 500);
+
+    // Lấy 3 tin mới nhất
+    const articles = data.items
+      .filter(item => item.title && item.title.length > 5)
+      .slice(0, 3)
+      .map(item => {
+        const pubDate = item.pubDate ? new Date(item.pubDate) : null;
+        return {
+          title: item.title || '',
+          link: item.link || fallbackUrl,
+          description: stripHtml(item.description || item.content || '').slice(0, 800),
+          dateStr: pubDate ? formatNewsDate(pubDate) : 'Hôm nay',
+          timeAgo: pubDate ? (Date.now() - pubDate.getTime()) : 0,
+        };
+      });
+
+    if (!articles.length) {
+      container.innerHTML = `<div class="fallback-msg"><i class="fas fa-info-circle"></i> Chưa có tin mới.</div>`;
+      return;
+    }
+
+    animateProgress(progId, 60, 500);
+
+    // Gọi Claude AI để tóm tắt từng tin
+    const summaryPromises = articles.map(art => {
+      const prompt = `Bạn là biên tập viên bản tin quân đội Việt Nam. Hãy tóm tắt bài báo sau thành 2-3 câu ngắn gọn, súc tích bằng tiếng Việt. Chỉ trả lời nội dung tóm tắt, không thêm tiêu đề hay giải thích.
+
+Tiêu đề: ${art.title}
+Mô tả: ${art.description}`;
+      return callClaude(prompt, 300);
+    });
+
+    const summaries = await Promise.all(summaryPromises);
+
+    animateProgress(progId, 90, 300);
+
+    // Merge summaries vào articles
+    articles.forEach((art, i) => {
+      if (summaries[i]) {
+        art.summary = summaries[i];
+      } else {
+        // Fallback: dùng description gốc
+        art.summary = art.description;
+      }
+    });
+
+    renderNews(container, articles);
+    animateProgress(progId, 100, 200);
+
+  } catch (err) {
+    console.warn(`Lỗi tải ${label}:`, err);
+    if (!container.querySelector('.news-list')) {
+      container.innerHTML = `
+        <div class="error-msg">
+          <i class="fas fa-exclamation-circle"></i>
+          <div>
+            <strong>Không thể tải ${label}</strong><br/>
+            <small>Vui lòng truy cập: <a href="${fallbackUrl}" target="_blank" style="color:inherit">${fallbackUrl}</a></small>
+          </div>
+        </div>`;
+    }
+  }
+}
+
+function formatNewsDate(date) {
+  const diffMs  = Date.now() - date.getTime();
+  const diffMin = Math.floor(diffMs / 60000);
+  const diffH   = Math.floor(diffMs / 3600000);
+  if (diffMin < 60)  return `${diffMin} phút trước`;
+  if (diffH   < 24)  return `${diffH} giờ trước`;
+  if (diffH   < 48)  return 'Hôm qua';
+  return `${String(date.getDate()).padStart(2,'0')}/${String(date.getMonth()+1).padStart(2,'0')}/${date.getFullYear()}`;
+}
+
+function getTimeBadge(timeAgo) {
+  if (timeAgo < 6  * 3600000) return { cls: 'badge-today',  label: 'Mới nhất' };
+  if (timeAgo < 36 * 3600000) return { cls: 'badge-recent', label: 'Gần đây' };
+  return { cls: 'badge-old', label: 'Cũ hơn' };
+}
+
+function renderNews(container, articles) {
+  if (!articles.length) {
+    container.innerHTML = `<div class="fallback-msg"><i class="fas fa-info-circle"></i> Chưa có tin mới hôm nay.</div>`;
+    return;
+  }
+  const html = articles.map(art => {
+    const badge = getTimeBadge(art.timeAgo);
+    const summaryText = art.summary || art.description || '';
+    return `
+    <a class="news-item" href="${escapeHtml(art.link)}" target="_blank" rel="noopener">
+      <div class="news-meta">
+        <span class="news-date"><i class="fas fa-clock"></i> ${escapeHtml(art.dateStr)}</span>
+        <span class="news-badge ${badge.cls}">${badge.label}</span>
+      </div>
+      <div class="news-title">${escapeHtml(art.title)}</div>
+      <p class="news-summary">${escapeHtml(summaryText)}</p>
+      <div class="news-source"><i class="fas fa-external-link-alt"></i> vnexpress.net &rarr; Đọc bài đầy đủ</div>
+    </a>`;
+  }).join('');
+  container.innerHTML = `<div class="news-list">${html}</div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LỜI BÁC HỒ DẠY – DÙNG CLAUDE AI + WEB SEARCH
+// ═══════════════════════════════════════════════════════════════
+async function loadBacHo() {
+  const container = document.getElementById('bac-ho-content');
+  const { dd, mm, day, month } = getToday();
+  
+  animateProgress('prog-bacho', 30, 500);
+
+  try {
+    // Dùng Claude AI với web search để tìm lời Bác Hồ dạy đúng ngày
+    const prompt = `Hôm nay là ngày ${day} tháng ${month}. Hãy tra cứu và cho biết lời Bác Hồ dạy ngày này năm xưa (ngày ${day} tháng ${month}).
+
+Yêu cầu:
+- Tìm chính xác lời dạy/câu nói/bài viết của Chủ tịch Hồ Chí Minh gắn với ngày ${day} tháng ${month} trong lịch sử
+- Nêu rõ bối cảnh: ngày ${day} tháng ${month} năm nào, trong dịp gì, Bác nói/viết điều này
+- Trích dẫn nguyên văn lời dạy
+- Trả lời bằng tiếng Việt
+
+Trả lời theo format:
+QUOTE: [trích nguyên văn lời Bác]
+CONTEXT: [bối cảnh ngắn gọn: năm nào, dịp gì]`;
+
+    const res = await fetch(ANTHROPIC_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }],
+        tools: [{ type: 'web_search_20250305', name: 'web_search' }]
+      })
+    });
+
+    animateProgress('prog-bacho', 70, 500);
+
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    const data = await res.json();
+    const text = data.content.map(b => b.text || '').filter(Boolean).join('\n').trim();
+
+    if (text && text.length > 30) {
+      // Parse QUOTE and CONTEXT
+      let quote = '', context = '';
+      const quoteMatch = text.match(/QUOTE:\s*([\s\S]*?)(?=CONTEXT:|$)/i);
+      const contextMatch = text.match(/CONTEXT:\s*([\s\S]*?)$/i);
+      
+      if (quoteMatch) {
+        quote = quoteMatch[1].trim();
+      }
+      if (contextMatch) {
+        context = contextMatch[1].trim();
+      }
+
+      // Nếu không parse được format, dùng toàn bộ text
+      if (!quote) {
+        quote = text;
+      }
+
+      animateProgress('prog-bacho', 100, 200);
+
+      container.innerHTML = `
+        <div class="bachday-box">
+          <div class="bachday-quote">${escapeHtml(quote)}</div>
+          ${context ? `<div class="bachday-context"><i class="fas fa-info-circle"></i> ${escapeHtml(context)}</div>` : ''}
+          <div class="bachday-date">
+            <i class="fas fa-calendar-alt"></i>
+            Ngày ${dd} tháng ${mm} năm xưa
+          </div>
+        </div>`;
+      return;
+    }
+    throw new Error('No content');
+  } catch (err) {
+    console.warn('Bác Hồ API error:', err);
+    animateProgress('prog-bacho', 100, 200);
+
+    // Fallback: hiển thị thông báo
+    container.innerHTML = `
+      <div class="bachday-box">
+        <div class="bachday-quote">Học hỏi là một việc phải tiếp tục suốt đời. Suốt đời phải gắn liền lý luận với công tác thực tế. Không ai có thể tự cho mình đã biết đủ rồi, biết hết rồi.</div>
+        <div class="bachday-date">
+          <i class="fas fa-calendar-alt"></i>
+          Ngày ${dd} tháng ${mm} năm xưa
+          &nbsp;|&nbsp;
+          <span style="color:#b45309; font-weight:400; font-style:italic;">Đang dùng dữ liệu dự phòng</span>
+        </div>
+      </div>`;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PHÁP LUẬT – SỬA LOGIC TÌM ĐÚNG NGÀY/TUẦN
+// ═══════════════════════════════════════════════════════════════
+function loadPhapLuat() {
+  const container = document.getElementById('law-content');
+  const { dd, mm, yyyy, day, month } = getToday();
+  const todayKey = `${dd}/${mm}/${yyyy}`;
+
+  // ── TÌM NGÀY CHÍNH XÁC, NẾU KHÔNG CÓ → NGÀY GẦN NHẤT TRƯỚC ĐÓ ──
+  let dayData = PHAPLUAT_DATA.daily[todayKey] || null;
+  let usedDayKey = todayKey;
+  
+  if (!dayData) {
+    const todayDate = new Date(yyyy, parseInt(mm)-1, parseInt(dd));
+    const allKeys = Object.keys(PHAPLUAT_DATA.daily);
+    let bestKey = null;
+    let bestDiff = Infinity;
+    
+    // Ưu tiên ngày gần nhất TRƯỚC hoặc BẰNG hôm nay
+    for (const k of allKeys) {
+      const parts = k.split('/');
+      const kDate = new Date(parseInt(parts[2]), parseInt(parts[1])-1, parseInt(parts[0]));
+      const diff = todayDate.getTime() - kDate.getTime();
+      if (diff >= 0 && diff < bestDiff) {
+        bestDiff = diff;
+        bestKey = k;
+      }
+    }
+    // Nếu không có ngày nào trước → lấy ngày gần nhất bất kỳ
+    if (!bestKey) {
+      for (const k of allKeys) {
+        const parts = k.split('/');
+        const kDate = new Date(parseInt(parts[2]), parseInt(parts[1])-1, parseInt(parts[0]));
+        const diff = Math.abs(todayDate.getTime() - kDate.getTime());
+        if (diff < bestDiff) {
+          bestDiff = diff;
+          bestKey = k;
+        }
+      }
+    }
+    if (bestKey) {
+      dayData = PHAPLUAT_DATA.daily[bestKey];
+      usedDayKey = bestKey;
+    }
+  }
+
+  // ── TÌM TUẦN CHÍNH XÁC ──
+  const week = getWeekOfMonth(day);
+  const weekKey = `Tuần ${week} tháng ${month}`;
+  let weekData = getWeekDataByKey(weekKey, month);
+
+  const isExactDay = usedDayKey === todayKey;
+  const dayLabel = isExactDay 
+    ? `Câu hỏi ngày ${todayKey}` 
+    : `Câu hỏi gần nhất (ngày ${usedDayKey})`;
+
+  container.innerHTML = `
+    <div class="law-tabs">
+      <button class="law-tab active" onclick="switchTab(event,'day')">
+        <i class="fas fa-calendar-day"></i> Ngày ${dd}/${mm}
+      </button>
+      <button class="law-tab" onclick="switchTab(event,'week')">
+        <i class="fas fa-calendar-week"></i> ${weekData.label}
+      </button>
+    </div>
+
+    <div class="law-panel active" id="law-panel-day">
+      ${dayData ? `
+        <div class="law-day-box">
+          <div class="law-day-label"><i class="fas fa-question-circle"></i> ${escapeHtml(dayLabel)}</div>
+          ${!isExactDay ? `<div style="font-size:0.8rem;color:#92400e;margin-bottom:10px;background:#fef3c7;padding:6px 10px;border-radius:6px;"><i class="fas fa-info-circle"></i> Không có câu hỏi cho ngày ${todayKey}. Hiển thị câu hỏi gần nhất.</div>` : ''}
+          <div class="law-question">${escapeHtml(dayData.question)}</div>
+          <div class="law-answer-label"><i class="fas fa-check-circle"></i> Đáp án:</div>
+          <div class="law-answer">${escapeHtml(dayData.answer)}</div>
+        </div>
+      ` : `
+        <div class="fallback-msg">
+          <i class="fas fa-calendar-times"></i>
+          Không có câu hỏi pháp luật trong cơ sở dữ liệu.
+        </div>
+      `}
+    </div>
+
+    <div class="law-panel" id="law-panel-week">
+      ${weekData.content ? `
+        <div class="law-week-box">
+          <div class="law-week-label"><i class="fas fa-book-open"></i> ${escapeHtml(weekData.label)}</div>
+          ${!weekData.isExact ? `<div style="font-size:0.8rem;color:#92400e;margin-bottom:10px;background:#fef3c7;padding:6px 10px;border-radius:6px;"><i class="fas fa-info-circle"></i> Không có dữ liệu cho ${weekKey}. Hiển thị tuần gần nhất.</div>` : ''}
+          <div class="law-week-title">${escapeHtml(weekData.title)}</div>
+          <div class="law-week-content">${escapeHtml(weekData.body)}</div>
+        </div>
+      ` : `
+        <div class="fallback-msg">
+          <i class="fas fa-calendar-times"></i>
+          Không có điều luật cho ${escapeHtml(weekData.label)}.
+        </div>
+      `}
+    </div>
+  `;
+}
+
+function getWeekDataByKey(weekKey, currentMonth) {
+  let raw = PHAPLUAT_DATA.weekly[weekKey] || '';
+  let label = weekKey;
+  let isExact = !!raw;
+
+  if (!raw) {
+    // Tìm tuần khác trong cùng tháng
+    for (let w = 4; w >= 1; w--) {
+      const fallKey = `Tuần ${w} tháng ${currentMonth}`;
+      if (PHAPLUAT_DATA.weekly[fallKey]) {
+        raw = PHAPLUAT_DATA.weekly[fallKey];
+        label = fallKey;
+        break;
+      }
+    }
+  }
+  // Nếu vẫn không có → lấy entry đầu tiên
+  if (!raw) {
+    const firstKey = Object.keys(PHAPLUAT_DATA.weekly)[0];
+    if (firstKey) {
+      raw = PHAPLUAT_DATA.weekly[firstKey];
+      label = firstKey;
+    }
+  }
+
+  if (!raw) return { label: weekKey, title: '', body: '', content: '', isExact: false };
+  const lines = raw.split('\n');
+  return {
+    label,
+    title: lines[0].trim(),
+    body: lines.slice(1).join('\n').trim(),
+    content: raw,
+    isExact
+  };
+}
+
+function switchTab(event, tab) {
+  document.querySelectorAll('.law-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.law-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(`law-panel-${tab}`).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+  </script>
 </body>
 </html>
